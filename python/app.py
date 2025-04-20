@@ -13,8 +13,8 @@ app.add_middleware(
     allow_methods=["*"],  # Or specify ["POST", "OPTIONS"] if you prefer
     allow_headers=["*"],
 )
-GOOGLE_API_KEY = "AIzaSyCv2l6KqyP-MoiOc5AtJTm3f5QQfkChcpE"
-YOUTUBE_API_KEY = "AIzaSyDoCOimWyjvX7vNaFhBXMlbV8bf3zOY7dM"
+GOOGLE_API_KEY = "your google api key"
+YOUTUBE_API_KEY = "your youtube api key"
 
 genai.configure(api_key=GOOGLE_API_KEY)
 gemini_model = genai.GenerativeModel("gemini-2.0-flash")
