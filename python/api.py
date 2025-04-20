@@ -28,7 +28,7 @@ app.add_middleware(
 )
 
 # Gemini LLM config
-genai.configure(api_key="AIzaSyCv2l6KqyP-MoiOc5AtJTm3f5QQfkChcpE")
+genai.configure(api_key="your gemini api key")
 gemini_model = genai.GenerativeModel("gemini-2.0-flash")
 
 @app.post("/analyze/")
