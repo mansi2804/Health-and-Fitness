@@ -150,5 +150,3 @@ H&F/
 ## Contributing
 Contributions welcome! Please open issues or PRs for bug fixes and new features.
 
-## License
-[MIT License](LICENSE)
