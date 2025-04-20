@@ -1,0 +1,427 @@
+/* Diet Plan Card Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.diet-card {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.diet-card .card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.diet-card .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.diet-card .card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.diet-card .card-description {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.diet-card .button-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.diet-card .btn-outline, 
+.diet-card .btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.diet-card .btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.diet-card .btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.diet-card .btn-primary {
+  background-color: var(--accent);
+  border: none;
+  color: var(--bg-dark);
+}
+
+.diet-card .btn-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.diet-card .full-width {
+  width: 100%;
+  justify-content: center;
+}
+
+.diet-card .card-content {
+  padding: 1.5rem;
+}
+
+/* Tabs */
+.diet-card .tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.diet-card .tabs-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.diet-card .tab-trigger {
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.diet-card .tab-trigger:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.diet-card .tab-trigger.active {
+  background-color: var(--accent-light);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.diet-card .tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Diet Grid */
+.diet-card .diet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.diet-card .day-card {
+  background-color: var(--bg-inner-card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.diet-card .day-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.diet-card .day-header {
+  padding: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.diet-card .day-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.diet-card .badge-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.diet-card .badge-primary, 
+.diet-card .badge-outline {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.diet-card .badge-primary {
+  background: var(--gradient);
+  color: var(--bg-dark);
+}
+
+.diet-card .badge-outline {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.diet-card .day-content {
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.diet-card .meal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.diet-card .meal-item {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+}
+
+.diet-card .meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.diet-card .meal-header:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.diet-card .meal-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.diet-card .meal-name {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.diet-card .meal-time {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.diet-card .expand-button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  transition: color 0.2s;
+}
+
+.diet-card .expand-button:hover {
+  color: var(--text-primary);
+}
+
+.diet-card .meal-details {
+  padding: 0.75rem 1rem;
+  padding-top: 0;
+  border-top: 1px solid var(--border-color);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.diet-card .food-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.diet-card .ingredients-list {
+  list-style: none;
+  margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid var(--accent);
+}
+
+.diet-card .ingredients-list li {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 0.125rem 0;
+}
+
+.diet-card .nutrition-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.diet-card .nutrition-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.diet-card .nutrition-item span:first-child {
+  color: var(--text-muted);
+}
+
+.diet-card .nutrition-item span:last-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.diet-card .day-footer {
+  padding: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.diet-card .nutrition-summary {
+  margin-bottom: 1rem;
+}
+
+.diet-card .nutrition-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.diet-card .macros-distribution {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.diet-card .macro {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.diet-card .macro.protein {
+  border-left: 2px solid #ff5555;
+}
+
+.diet-card .macro.carbs {
+  border-left: 2px solid #5555ff;
+}
+
+.diet-card .macro.fat {
+  border-left: 2px solid #ffaa55;
+}
+
+.diet-card .macro span:first-child {
+  color: var(--text-muted);
+}
+
+.diet-card .macro span:last-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Progress Section */
+.diet-card .progress-section {
+  margin-top: 1rem;
+}
+
+.diet-card .progress-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.diet-card .progress-bar {
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.diet-card .progress-fill {
+  height: 100%;
+  background: var(--gradient);
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+}
+
+.diet-card .progress-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Placeholder Message */
+.diet-card .placeholder-message {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .diet-card .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .diet-card .button-group {
+    width: 100%;
+  }
+  
+  .diet-card .btn-outline, 
+  .diet-card .btn-primary {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .diet-card .tabs-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .diet-card .diet-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .diet-card .macros-distribution {
+    grid-template-columns: 1fr;
+  }
+}

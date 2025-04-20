@@ -1,0 +1,571 @@
+/* voicechat.css - with scoping */
+/* Add a scope wrapper class */
+.voice-chat-component {
+    /* Reset styles to prevent inheritance */
+    all: initial;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color-scheme: dark;
+    
+    /* Define variables in the scope */
+    --primary-bg: rgb(32, 33, 39);
+    --accent-color: rgb(24, 239, 199);
+    --secondary-bg: rgb(40, 42, 54);
+    --text-color: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --user-message-bg: rgb(45, 47, 59);
+    --bot-message-bg: rgb(55, 58, 75);
+    --navbar-height: 72px;
+    --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-strong: 0 10px 25px rgba(0, 0, 0, 0.25);
+    --border-radius: 12px;
+    
+    /* Base styles for the container */
+    box-sizing: border-box;
+    display: block;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    width: 100%;
+    height: 100vh;
+}
+  
+/* Ensure all child elements use border-box */
+.voice-chat-component * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+  
+.voice-chat-component .app-container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - var(--navbar-height));
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: var(--navbar-height);
+}
+  
+/* Left section - Chat history */
+.voice-chat-component .chat-section {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-bg);
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    min-width: 60%;
+    max-height: calc(100vh - var(--navbar-height));
+}
+  
+.voice-chat-component .header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(40, 42, 54, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+}
+  
+.voice-chat-component .app-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+  
+.voice-chat-component .title-icon {
+    margin-right: 12px;
+    font-size: 1.5rem;
+}
+  
+.voice-chat-component .title-text {
+    background: linear-gradient(90deg, var(--text-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+  
+.voice-chat-component .conversation-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100% - 150px); /* Adjust based on header and input container heights */
+}
+  
+.voice-chat-component .empty-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 2rem;
+}
+  
+.voice-chat-component .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+  
+.voice-chat-component .empty-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+  
+.voice-chat-component .empty-subtext {
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+  
+.voice-chat-component .message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+}
+  
+.voice-chat-component .message-item {
+    display: flex;
+    align-items: flex-start;
+    max-width: 100%;
+}
+  
+.voice-chat-component .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+  
+.voice-chat-component .user-avatar {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+}
+  
+.voice-chat-component .bot-avatar {
+    background: linear-gradient(135deg, #6b73ff, var(--accent-color));
+    color: var(--primary-bg);
+}
+  
+.voice-chat-component .avatar-icon {
+    stroke-width: 2.5;
+}
+  
+.voice-chat-component .message-bubble {
+    padding: 1rem 1.25rem;
+    border-radius: var(--border-radius);
+    line-height: 1.5;
+    position: relative;
+    max-width: 85%;
+    box-shadow: var(--shadow-subtle);
+}
+  
+.voice-chat-component .user-message {
+    background-color: var(--user-message-bg);
+    color: var(--text-color);
+    border-top-left-radius: 4px;
+}
+  
+.voice-chat-component .bot-message {
+    background-color: var(--bot-message-bg);
+    color: var(--text-color);
+    border-top-left-radius: 4px;
+}
+  
+.voice-chat-component .input-container {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    background-color: rgba(40, 42, 54, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+}
+  
+.voice-chat-component .record-button {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-strong);
+}
+  
+.voice-chat-component .record-idle {
+    background-color: var(--accent-color);
+}
+  
+.voice-chat-component .record-active {
+    background-color: #ff4c4c;
+    animation: voice-chat-pulse 1.5s infinite;
+}
+  
+.voice-chat-component .record-status {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+  
+.voice-chat-component .status-pill {
+    background-color: #ff4c4c;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: var(--shadow-subtle);
+    animation: voice-chat-fadeInDown 0.3s ease;
+}
+  
+/* Right section - Animated Bot */
+.voice-chat-component .bot-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-bg);
+    position: relative;
+    padding: 2rem;
+    overflow: hidden;
+    min-width: 30%;
+    max-height: calc(100vh - var(--navbar-height));
+}
+  
+.voice-chat-component .bot-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(24, 239, 199, 0.05) 0%, rgba(24, 239, 199, 0) 70%);
+    z-index: 0;
+}
+  
+.voice-chat-component .bot-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease;
+}
+  
+.voice-chat-component .bot-body {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #2c2e3e, #1a1b21);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    border: 4px solid rgba(24, 239, 199, 0.2);
+}
+  
+.voice-chat-component .bot-inner {
+    width: 80%;
+    height: 80%;
+    background: linear-gradient(135deg, #353748, #252731);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+  
+.voice-chat-component .bot-face {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+  
+.voice-chat-component .bot-eye {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(24, 239, 199, 0.15);
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.voice-chat-component .left-eye {
+    top: 35%;
+    left: 30%;
+}
+  
+.voice-chat-component .right-eye {
+    top: 35%;
+    right: 30%;
+}
+  
+.voice-chat-component .eye-pupil {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+  
+.voice-chat-component .bot-mouth {
+    position: absolute;
+    bottom: 35%;
+    width: 40px;
+    height: 8px;
+    background-color: rgba(24, 239, 199, 0.2);
+    border-radius: 10px;
+}
+  
+.voice-chat-component .mouth-idle {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: var(--accent-color);
+    opacity: 0.7;
+}
+  
+.voice-chat-component .mouth-speaking {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+  
+.voice-chat-component .mouth-wave {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+  
+.voice-chat-component .wave-animation {
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+    position: absolute;
+}
+  
+.voice-chat-component .sound-waves {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+  
+.voice-chat-component .wave-outer, 
+.voice-chat-component .wave-inner {
+    position: absolute;
+    border: 2px solid rgba(24, 239, 199, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  
+.voice-chat-component .wave-outer {
+    width: 100%;
+    height: 100%;
+    animation: voice-chat-ripple 2s infinite;
+}
+  
+.voice-chat-component .wave-inner {
+    width: 70%;
+    height: 70%;
+    animation: voice-chat-ripple 2s infinite 0.5s;
+}
+  
+.voice-chat-component .status-indicators {
+    position: absolute;
+    bottom: -40px;
+    display: flex;
+    gap: 12px;
+}
+  
+.voice-chat-component .status-indicator {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    gap: 6px;
+}
+  
+.voice-chat-component .status-icon-recording {
+    color: #ff4c4c;
+}
+  
+.voice-chat-component .status-icon-speaking {
+    color: var(--accent-color);
+}
+  
+.voice-chat-component .status-text {
+    color: var(--text-color);
+    font-weight: 500;
+}
+  
+.voice-chat-component .bot-info {
+    margin-top: 80px;
+    text-align: center;
+}
+  
+.voice-chat-component .bot-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    background: linear-gradient(90deg, var(--accent-color), #6b73ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+  
+.voice-chat-component .bot-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+  
+/* Animations with namespaced names */
+@keyframes voice-chat-pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7);
+    }
+    70% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 12px rgba(255, 76, 76, 0);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 76, 76, 0);
+    }
+}
+  
+@keyframes voice-chat-ripple {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1);
+    }
+}
+  
+@keyframes voice-chat-fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) translateX(-50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) translateX(-50%);
+    }
+}
+  
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    .voice-chat-component .bot-section {
+      flex: 1.5;
+    }
+}
+  
+@media (max-width: 768px) {
+    .voice-chat-component .app-container {
+      flex-direction: column; /* Stack vertically on smaller screens */
+    }
+    
+    .voice-chat-component .chat-section {
+      flex: 2;
+      min-width: 100%;
+      max-height: 60vh;
+    }
+    
+    .voice-chat-component .bot-section {
+      flex: 1;
+      padding: 1rem;
+      min-width: 100%;
+      max-height: 40vh;
+    }
+    
+    .voice-chat-component .bot-body {
+      width: 140px;
+      height: 140px;
+    }
+    
+    .voice-chat-component .bot-info {
+      margin-top: 50px;
+    }
+  
+    .voice-chat-component .message-bubble {
+      max-width: 90%;
+      padding: 0.8rem 1rem;
+    }
+}
+  
+@media (max-width: 600px) {
+    .voice-chat-component .app-title {
+      font-size: 1.4rem;
+    }
+    
+    .voice-chat-component .record-button {
+      width: 56px;
+      height: 56px;
+    }
+    
+    .voice-chat-component .bot-body {
+      width: 110px;
+      height: 110px;
+    }
+    
+    .voice-chat-component .bot-info {
+      margin-top: 30px;
+    }
+    
+    .voice-chat-component .bot-name {
+      font-size: 1.5rem;
+    }
+  
+    .voice-chat-component .bot-description {
+      font-size: 0.8rem;
+    }
+  
+    .voice-chat-component .empty-text {
+      font-size: 1rem;
+    }
+  
+    .voice-chat-component .empty-subtext {
+      font-size: 0.85rem;
+    }
+}

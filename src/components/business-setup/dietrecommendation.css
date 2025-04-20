@@ -1,0 +1,288 @@
+/* DietPlan.css */
+:root {
+    --background-color: rgb(32, 33, 39);
+    --card-bg-color: rgb(26, 27, 32);
+    --accent-color: rgb(24, 239, 199);
+    --highlight-gradient: linear-gradient(135deg, rgba(26, 27, 32, 0.9) 0%, rgba(24, 239, 199, 0.9) 100%);
+    --text-primary: #fff;
+    --text-secondary: #a0a0a5;
+    --card-border: rgba(40, 41, 48, 0.8);
+    --hover-color: rgba(24, 239, 199, 0.1);
+  }
+  
+  .diet-plan-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .diet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .diet-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .diet-header p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  .diet-goals {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .goal-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid rgba(60, 60, 67, 0.6);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .goal-button.active {
+    background: var(--highlight-gradient);
+    color: var(--text-primary);
+    border-color: transparent;
+  }
+  
+  .goal-button:hover:not(.active) {
+    background-color: var(--hover-color);
+    color: var(--text-primary);
+  }
+  
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+  
+  .filter-section h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .diet-plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .diet-card {
+    background-color: var(--card-bg-color);
+    border-radius: 0.75rem;
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .diet-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .diet-card::before {
+    content: '';
+    height: 4px;
+    background: var(--highlight-gradient);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .diet-card-header {
+    padding: 1.5rem 1.5rem 0.75rem;
+  }
+  
+  .diet-card-header h3 {
+    margin: 0 0 0.35rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .diet-card-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .diet-card-details {
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  
+  .detail-item svg {
+    color: var(--accent-color);
+  }
+  
+  .diet-card-meals {
+    padding: 0 1.5rem 1.5rem;
+    flex-grow: 1;
+  }
+  
+  .diet-card-meals h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .diet-card-meals ul {
+    padding-left: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  
+  .diet-card-meals li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .diet-card-meals li strong {
+    color: var(--text-primary);
+  }
+  
+  .diet-card-meals li:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+  
+  .start-diet-button {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    background: var(--highlight-gradient);
+    color: var(--text-primary);
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    margin-top: auto;
+  }
+  
+  .start-diet-button:hover {
+    opacity: 0.9;
+  }
+  
+  .start-diet-button:active {
+    transform: scale(0.98);
+  }
+  
+  .bmi-recommendations {
+    background-color: var(--card-bg-color);
+    border-radius: 0.75rem;
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    margin-top: 2rem;
+    position: relative;
+  }
+  
+  .bmi-recommendations::before {
+    content: '';
+    height: 4px;
+    background: var(--highlight-gradient);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .bmi-header {
+    padding: 1.5rem;
+  }
+  
+  .bmi-header h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .bmi-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .bmi-content {
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .bmi-advice p {
+    margin-top: 0;
+    color: var(--text-secondary);
+  }
+  
+  .highlight {
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+  
+  .bmi-advice ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+    list-style-type: none;
+  }
+  
+  .bmi-advice li {
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  
+  .bmi-advice li::before {
+    content: '•';
+    position: absolute;
+    left: -1.5rem;
+    color: var(--accent-color);
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .diet-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .diet-plans-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .filter-section {
+      flex-direction: column;
+    }
+  }

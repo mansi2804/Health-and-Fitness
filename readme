@@ -1,0 +1,24 @@
+Run Frontend - 
+
+Root Directory - 
+Npm install
+Npm run dev
+
+
+Run Backend - 
+
+Cd python (go to python directory)
+
+Pip3 install -r requirements.txt
+
+Terminal 1 -
+Python3 chat.py
+
+Terminal 2 -
+python3 -m uvicorn app:app --reload --port 8001
+
+Terminal 3 - 
+python3 -m uvicorn api:app --reload --port 8000
+
+Terminal 4 - 
+python3 -m uvicorn main:app --reload --port 8002

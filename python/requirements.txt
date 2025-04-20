@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+torch
+torchvision
+pillow
+pandas
+python-multipart
+google-generative-ai

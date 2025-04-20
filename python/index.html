@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Voice Coach</title>
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --primary-dark: #388E3C;
+      --secondary: #2196F3;
+      --light: #f5f5f5;
+      --dark: #212121;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 800px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+    }
+    
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    #chat {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .message {
+      max-width: 70%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      line-height: 1.4;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .user-message {
+      align-self: flex-end;
+      background: var(--secondary);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+    
+    .bot-message {
+      align-self: flex-start;
+      background: var(--light);
+      color: var(--dark);
+      border-bottom-left-radius: 4px;
+    }
+    
+    .controls {
+      padding: 15px;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    
+    #recordBtn {
+      background: var(--primary);
+      color: white;
+    }
+    
+    #recordBtn:hover {
+      background: var(--primary-dark);
+    }
+    
+    #recordBtn.recording {
+      background: #f44336;
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(244, 67, 54, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+    }
+    
+    .loader {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        height: 90vh;
+      }
+      .message {
+        max-width: 85%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Fitness Voice Coach</h1>
+    </header>
+    
+    <div id="chat"></div>
+    
+    <div class="controls">
+      <button id="recordBtn">
+        <span id="btnText">Start Speaking</span>
+        <span id="btnIcon">🎤</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const recordBtn = document.getElementById('recordBtn');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
+    
+    let mediaRecorder;
+    let audioChunks = [];
+    let isRecording = false;
+    
+    // Add message to chat
+    function addMessage(text, isUser) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', isUser ? 'user-message' : 'bot-message');
+      messageDiv.textContent = text;
+      chat.appendChild(messageDiv);
+      chat.scrollTop = chat.scrollHeight;
+    }
+    
+    // Show loading indicator
+    function showLoading() {
+      const loadingDiv = document.createElement('div');
+      loadingDiv.classList.add('message', 'bot-message');
+      loadingDiv.innerHTML = '<div class="loader"></div>';
+      chat.appendChild(loadingDiv);
+      chat.scrollTop = chat.scrollHeight;
+      return loadingDiv;
+    }
+    
+    // Toggle recording state
+    function toggleRecording() {
+      isRecording = !isRecording;
+      
+      if (isRecording) {
+        recordBtn.classList.add('recording');
+        btnText.textContent = 'Listening...';
+        btnIcon.textContent = '🔴';
+        startRecording();
+      } else {
+        recordBtn.classList.remove('recording');
+        btnText.textContent = 'Start Speaking';
+        btnIcon.textContent = '🎤';
+        stopRecording();
+      }
+    }
+    
+    // Start recording
+    async function startRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+        
+        mediaRecorder.ondataavailable = e => {
+          audioChunks.push(e.data);
+        };
+        
+        mediaRecorder.onstop = async () => {
+          const loading = showLoading();
+          
+          try {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const formData = new FormData();
+            formData.append('audio', audioBlob, 'recording.wav');
+            
+            const response = await fetch('/voice', {
+              method: 'POST',
+              body: formData
+            });
+            
+            if (!response.ok) throw new Error('Network response was not ok');
+            
+            const data = await response.json();
+            
+            if (data.user && data.bot) {
+              chat.removeChild(loading);
+              addMessage(data.user, true);
+              addMessage(data.bot, false);
+              
+              // Auto-scroll to bottom
+              setTimeout(() => {
+                chat.scrollTop = chat.scrollHeight;
+              }, 100);
+            }
+          } catch (err) {
+            console.error('Error:', err);
+            chat.removeChild(loading);
+            addMessage("Sorry, I encountered an error. Please try again.", false);
+          }
+        };
+        
+        mediaRecorder.start();
+        
+        // Stop after 10 seconds if user doesn't stop manually
+        setTimeout(() => {
+          if (isRecording) toggleRecording();
+        }, 10000);
+        
+      } catch (err) {
+        console.error('Error accessing microphone:', err);
+        addMessage("Please allow microphone access to use this feature.", false);
+        isRecording = false;
+        recordBtn.classList.remove('recording');
+        btnText.textContent = 'Start Speaking';
+        btnIcon.textContent = '🎤';
+      }
+    }
+    
+    // Stop recording
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        mediaRecorder.stream.getTracks().forEach(track => track.stop());
+      }
+    }
+    
+    // Event listeners
+    recordBtn.addEventListener('click', toggleRecording);
+    
+    // Initial bot greeting
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        addMessage("Hi! I'm your fitness coach. What's your fitness goal today?", false);
+      }, 500);
+    });
+  </script>
+</body>
+</html>
