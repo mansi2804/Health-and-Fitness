@@ -141,7 +141,6 @@ H&F/
 │   ├── main.py
 │   └── requirements.txt
 ├── Diagrams/
-├── Demo.mp4
 ├── package.json
 ├── vite.config.js
 └── README.md
