@@ -8,8 +8,7 @@ H & F is a full-stack AI-driven health & fitness web application that empowers u
   Signup, login, and profile setup using Firebase Authentication and Firestore.
 - **Dashboard & Tracking**  
   Log workouts, meals, calories, and nutrients; view progress charts.
-- **Food Nutrition Lookup**  
-  - Text search: Enter a food name for detailed nutrition facts.  
+- **Food Nutrition Lookup** 
   - Image upload: AI-based food classification (PyTorch) and nutrition extraction.
 - **Personalized Meal Plans**  
   - One-week meal plan on demand.  
@@ -18,10 +17,12 @@ H & F is a full-stack AI-driven health & fitness web application that empowers u
   - One-week gym plans (3 exercises/day).  
   - Progressive overload for weeks 2–4.  
   - Auto-fetch YouTube demo links for each exercise.
+- **BMI Calculator**  
+  Calculate Body Mass Index using height and weight to evaluate and adjust health goals.
 - **AI Chat Assistant**  
   Conversational Q&A and navigation commands via Google Gemini.
-- **Notifications & Settings**  
-  Manage in-app alerts and user preferences.
+- **Profile Update**  
+  Update fitness goals, dietary preferences, and other user data.
 - **Tech & Integrations**  
   React, Vite, Tailwind CSS, MUI, React Router, Zustand, FastAPI, Flask, Google Gemini, YouTube Data API, PyTorch.
 
