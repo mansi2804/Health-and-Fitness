@@ -20,8 +20,8 @@ app.add_middleware(
 )
 
 # ==== API Keys ====
-GOOGLE_API_KEY = "AIzaSyCv2l6KqyP-MoiOc5AtJTm3f5QQfkChcpE"
-YOUTUBE_API_KEY = "AIzaSyDoCOimWyjvX7vNaFhBXMlbV8bf3zOY7dM"
+GOOGLE_API_KEY = "your GOOGLE_API_KEY "
+YOUTUBE_API_KEY = "your YOUTUBE_API_KEY "
 
 genai.configure(api_key=GOOGLE_API_KEY)
 gemini_model = genai.GenerativeModel("gemini-2.0-flash")
